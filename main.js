@@ -35,6 +35,7 @@ let shopItemData = [
 ]; //
 
 let basket =[]
+
 let generateShop = () => {
 	return (shop.innerHTML = shopItemData
 		.map((item) => {
@@ -63,15 +64,32 @@ generateShop();
 
 let increment = (id) => {
 	let selectedItem = id;
+	let search = basket.find((item) => item.id === selectedItem.id); 
 
-
-	basket.push({
-		id: selectedItem.id,
-		item:1,
-	});
-	console.log(basket);
+	if (search === undefined) {
+		basket.push({
+			id: selectedItem.id,
+			item:1,
+		});
+	}else{
+		search.item++
+	}  
+	update(selectedItem.id)
 };
+ 
+let decrement = (id) =>  {
+	let selectedItem = id;
+	let search = basket.find((item) => item.id === selectedItem.id);  
 
-let decrement = (id) => {
-	console.log(selectedItem.id);
-};
+	if (search.item  === 0) return;
+	else{
+		search.item--
+	} 
+ 
+  update(selectedItem.id)
+}
+
+let update = (id) => {
+	let search = basket.find((item) => item.id === id); 
+	 let count = document.getElementById(id).innerHTML = search.item;
+}
