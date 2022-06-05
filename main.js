@@ -1,7 +1,7 @@
 let shop = document.getElementById("shop");
 let shopItemData = [
 	{
-		id: "d-1",
+		id: " sh1",
 		name: "pem shoe",
 		price: 25,
 		desc:
@@ -9,7 +9,7 @@ let shopItemData = [
 		img: "./assets/photo-1560769629-975ec94e6a86.avif",
 	},
 	{
-		id: "d-2",
+		id: " sh2",
 		name: "adidas shoe",
 		price: 26,
 		desc:
@@ -17,7 +17,7 @@ let shopItemData = [
 		img: "./assets/photo-1560769629-975ec94e6a86.avif",
 	},
 	{
-		id: "d-3",
+		id: " sh3",
 		name: "nike shoe",
 		price: 27,
 		desc:
@@ -25,7 +25,7 @@ let shopItemData = [
 		img: "./assets/photo-1560769629-975ec94e6a86.avif",
 	},
 	{
-		id: "d-4",
+		id: " sh4",
 		name: "puma shoe",
 		price: 28,
 		desc:
@@ -33,27 +33,45 @@ let shopItemData = [
 		img: "./assets/photo-1560769629-975ec94e6a86.avif",
 	},
 ]; //
+
+let basket =[]
 let generateShop = () => {
 	return (shop.innerHTML = shopItemData
 		.map((item) => {
-			return ` <div id='product-${item.id}' class="item">
-		<img class="img-fit" src = "${item.img}" alt=""> 
+			let { id, name, price, desc, img } = item;
+			return ` 
+	<div id='product-${id}' class="item">
+		<img class="img-fit" src = "${img}" alt=""> 
 		<div class="details">
-			<h3 class="title"> ${item.name}</h3>
-			<p> ${item.desc}</p>
+			<h3 class="title"> ${name}</h3>
+			<p> ${desc}</p>
 			<div class="price-quantity">
-				<h2>${item.price}</h2>
+				<h2>${price}</h2>
 				<div class="buttons">
-					<i class="bi bi-dash-lg"></i>
-					<div id=${id} class="quantit">0</div>
-					<i class="bi bi-plus-lg"></i>
+					<i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
+					<div id=${id} class="quantit"  > 0</div>
+					<i onclick="increment(${id})" class="bi bi-plus-lg"></i>
 				</div>
 			</div>
 		</div>
-	</div>`;
+	</div>
+	`;
 		})
 		.join(""));
 };
 generateShop();
 
-generateShop();
+let increment = (id) => {
+	let selectedItem = id;
+
+
+	basket.push({
+		id: selectedItem.id,
+		item:1,
+	});
+	console.log(basket);
+};
+
+let decrement = (id) => {
+	console.log(selectedItem.id);
+};
